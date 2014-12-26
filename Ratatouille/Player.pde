@@ -7,6 +7,7 @@ class Player extends GameObject{
   char button1;
   char button2;
   int index;
+  float life = 3;
     
   Player(){
     pos = new PVector(width / 2, height / 2);
@@ -48,9 +49,11 @@ class Player extends GameObject{
    fill(128,128,128);
    ellipse(0,10,20,35);
    
+   noStroke();
    fill(colour);
    triangle(0,-15,-10,0,+10,0);
    
+   stroke(128,128,128);
    fill(255);
    line(0,28,-5,35);
     
@@ -67,11 +70,9 @@ class Player extends GameObject{
       pos.sub(forward);
     }
     if (checkKey(left)){
-  
       theta -= 0.1f;
     }    
     if (checkKey(right)){
- 
       theta += 0.1f;
     }
     if (checkKey(start)){
@@ -88,7 +89,13 @@ class Player extends GameObject{
     }
     if(pos.x > width + 35){
       pos.x = -30;
-    }      
+    }
+    if(pos.y < -35){
+      pos.y =  height + 30;
+    }
+    if(pos.y > height + 35){
+      pos.y = -30;
+    }  
   }
   
  

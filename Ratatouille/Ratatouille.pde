@@ -1,9 +1,12 @@
 ArrayList<Player> players = new ArrayList<Player>();
+ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
 
 void setup(){
   size(500, 500);
   setUpPlayerControllers();
+  objects.add(new Spatula(200,200));
+  
 }
 
 void draw(){
@@ -15,11 +18,15 @@ void draw(){
     line(i*50,0,i*50,height);
   }  
   
-  for(Player player:players)
-  {
-    player.update();
-    player.display();
+  for(Player player:players){
+    if(player.life > 0){
+      player.update();
+      player.display();
+    }
   }
+  
+  objects.get(0).display(); 
+  objects.get(0).update(); 
 }
 
 void keyPressed(){
@@ -66,6 +73,6 @@ void setUpPlayerControllers(){
     int x = (i + 1) * gap;
     p.pos.x = x;
     p.pos.y = 300;
-   players.add(p);         
+    players.add(p);         
   }
 }

@@ -12,7 +12,7 @@ class GameObject{
     forward = new PVector(0,-1);
   }
 
-  void move(){
+  void update(){
   }
 
   void display(){
