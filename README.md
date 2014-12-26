@@ -9,5 +9,5 @@ Goal:
  *Avoid Spatula or else you lose 1 life
 
 Dec 26
-  *Procedurally drawn Rat(Player), Spatula, Food
+*Procedurally drawn Rat(Player), Spatula, Food
   
