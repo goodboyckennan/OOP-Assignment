@@ -1,13 +1,13 @@
 class GameObject{
   PVector pos;
-  PVector forward;
+  PVector forward = new PVector(0,-1);
   float x,y;
   float theta;
   color colour;
   boolean alive;
   
   GameObject(){
-    alive = true;
+    alive = true; 
     pos = new PVector(width/2,height/2);
     forward = new PVector(0,-1);
   }
