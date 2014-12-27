@@ -9,5 +9,11 @@ Goal:
 -Avoid Spatula or else you lose 1 life
 
 Dec 26
--Procedurally drawn Rat(Player), Spatula, Food
+- Procedurally drawn Rat(Player), Spatula,
+
+Dec 27
+
+- Watched "Ratatouille" to get more idea
+- Procedurally drawn the Game Floor inspired by the kitchen floor in "Ratatouille"
+- tweaked the speed of the Rat(Player)
   
