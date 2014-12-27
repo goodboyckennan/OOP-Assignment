@@ -3,20 +3,15 @@ ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
 
 void setup(){
-  size(500, 500);
+  size(600, 600);
   setUpPlayerControllers();
   objects.add(new Spatula(200,200));
   
 }
 
 void draw(){
-  background(0);
-  
-   for(int i = 0; i < 15; i++){
-    stroke(0,255,0);
-    line(0,i*50,width,i*50);
-    line(i*50,0,i*50,height);
-  }  
+  background(255);
+  gameFloor();
   
   for(Player player:players){
     if(player.life > 0){
@@ -75,4 +70,32 @@ void setUpPlayerControllers(){
     p.pos.y = 300;
     players.add(p);         
   }
+}
+
+void gameFloor(){
+  fill(0);
+  int gap = 50;
+  
+  
+  stroke(128,128,128);
+  for(int i = 0; i <= 12; i++){
+    if(i % 2 == 1){
+      fill(216,216,216);
+    }else{
+      fill(255);
+    }
+    
+    for(int j = 1; j <= 12; j++){
+       rect(i*gap,j*gap,gap,gap);
+    }
+  } 
+  
+  noStroke();
+  fill(0);
+  for(int i = 0; i <= 12; i++){
+    for(int j = 1; j <= 12; j++){
+      quad((gap*i)-15,(gap*j),(gap*i),(gap*j)-15,(gap*i)+15,(gap*j),(gap*i),(gap*j)+15);    
+    }
+  } 
+  
 }

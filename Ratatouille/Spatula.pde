@@ -18,6 +18,7 @@ class Spatula extends GameObject{
     translate(pos.x,pos.y);
     rotate(theta);
     
+    fill(255,0,0);
     noStroke();
     rect(-4,5,7,30);
     ellipse(0,0,15,20);

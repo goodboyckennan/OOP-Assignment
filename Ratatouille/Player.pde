@@ -64,7 +64,7 @@ class Player extends GameObject{
     forward.x = sin(theta);
     forward.y = -cos(theta);
     if (checkKey(up)){
-      pos.add(forward);
+      pos.add((forward));
     }
     if (checkKey(down)){
       pos.sub(forward);
@@ -90,11 +90,11 @@ class Player extends GameObject{
     if(pos.x > width + 35){
       pos.x = -30;
     }
-    if(pos.y < -35){
+    if(pos.y < 25){
       pos.y =  height + 30;
     }
     if(pos.y > height + 35){
-      pos.y = -30;
+      pos.y = 35;
     }  
   }
   
