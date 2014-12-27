@@ -4,14 +4,14 @@ Video Doc Link: https://www.youtube.com/channel/UCWapv40JFKfXufE6D8cu-VA/videos
 
 A Game inspired by the "Ratatouille" Cartoon.
 
-Goal: 
+<b>Goal:</b> 
 - You control the rat, find the food without getting hit for as long as you can
 - Avoid Spatula or else you lose 1 life
 
-Dec 26
+<b>Dec 26</b>
 - Procedurally drawn Rat(Player), Spatula,
 
-Dec 27
+<b>Dec 27</b>
 
 - Watched "Ratatouille" to get more idea
 - Procedurally drawn the Game Floor inspired by the kitchen floor in "Ratatouille"
