@@ -75,17 +75,17 @@ void setUpPlayerControllers(){
 void gameFloor(){
   fill(0);
   int gap = 50;
-  
-  
+   
   stroke(128,128,128);
   for(int i = 0; i <= 12; i++){
-    if(i % 2 == 1){
-      fill(216,216,216);
-    }else{
-      fill(255);
-    }
-    
     for(int j = 1; j <= 12; j++){
+      if(i % 2 == 0){
+        if(j % 2 == 1) fill(216,216,216);
+        else fill(255);        
+      }else{
+        if(j % 2 == 0) fill(216,216,216);
+        else fill(255);   
+      }
        rect(i*gap,j*gap,gap,gap);
     }
   } 

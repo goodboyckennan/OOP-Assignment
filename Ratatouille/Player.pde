@@ -61,10 +61,11 @@ class Player extends GameObject{
   }  
   
   void update(){
-    forward.x = sin(theta);
-    forward.y = -cos(theta);
+    speed = 2.0f;
+    forward.x = sin(theta)*speed;
+    forward.y = -cos(theta)*speed;
     if (checkKey(up)){
-      pos.add((forward));
+      pos.add(forward);
     }
     if (checkKey(down)){
       pos.sub(forward);
@@ -95,7 +96,8 @@ class Player extends GameObject{
     }
     if(pos.y > height + 35){
       pos.y = 35;
-    }  
+    }
+    println(forward);  
   }
   
  

@@ -5,11 +5,12 @@ class GameObject{
   float theta;
   color colour;
   boolean alive;
+  float speed;
   
   GameObject(){
     alive = true; 
     pos = new PVector(width/2,height/2);
-    forward = new PVector(0,-1);
+    //forward = new PVector(0,-1);
   }
 
   void update(){
