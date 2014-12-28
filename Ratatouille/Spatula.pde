@@ -10,7 +10,7 @@ class Spatula extends GameObject{
   }
   
   void update(){
-    theta += 0.1f;
+    theta += 0.15f;
   }
   
   void display(){
