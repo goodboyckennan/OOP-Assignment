@@ -19,7 +19,6 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Dec 28</b>
 - Created the Main Menu
 - Created the Stats Interface
-- 
 
 <b>Dec 29 - Jan 04</b>
 - Exam Review Week
