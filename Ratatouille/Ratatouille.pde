@@ -2,13 +2,18 @@ ArrayList<Player> players = new ArrayList<Player>();
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
 PFont font;
+PImage design1;
+String[] line;
 int gameState = 0;
 void setup(){
   size(600, 600);
   font = loadFont("copperplate.vlw");
+  design1 = loadImage("");
   setUpPlayerControllers();
   objects.add(new Spatula(200,200));
   objects.add(new Spatula(400,200));
+  
+  loadHighScore();
 }
 
 void draw(){
@@ -21,10 +26,16 @@ void draw(){
     case 1:
       playTagGame();
       break;
+    case 3:
+      highScore();
+      break;
   }
 }
 
 void gameMenu(){
+  fill(16,136,240);
+  ellipse(width/2,150,550,150);
+  
   for(Player player:players){
     player.update();
     player.display();
@@ -48,17 +59,20 @@ void gameMenu(){
   if(mousePressed){
     if((mouseX > 240 && mouseX < 360) && (mouseY > 280 && mouseY < 320)){
       gameState = 1;
+    }else if((mouseX > 230 && mouseX < 320) && (mouseY > 390 && mouseY < 410)){
+      gameState = 3;
     }else if((mouseX > 275 && mouseX < 325) && (mouseY > 440 && mouseY < 460)){
       exit();
     }
   }
   
-  
+  /*
   stroke(0,255,0);
   for(int i = 0; i < 12; i++){
     line(0,50*i,width,50*i);
     line(50*i,0,50*i,height);    
   }
+  */
 }
 
 void playTagGame(){
@@ -70,6 +84,7 @@ void playTagGame(){
       player.display();
     }
   }
+  
   statInterface();
 }
 
@@ -113,23 +128,44 @@ void setUpPlayerControllers(){
   }
 }
 
+void highScore(){
+  
+}
+
+String[] name;
+int[] tag;
+
+void loadHighScore(){
+  line = loadStrings("tag.csv");
+  name = new String[line.length];
+  tag = new int[line.length];  
+  
+  for(int i = 0; i < line.length; i++){
+    String[] data = split(line[i],",");
+    name[i] = data[0];
+    tag[i] = parseInt(data[1]);
+  }
+}
+
 void gameFloor(){
   fill(0);
   int gap = 50;
    
+  //make blocks with grey and white colours
   stroke(128,128,128);
   for(int i = 0; i <= 12; i++){
     for(int j = 1; j <= 12; j++){
       if(i % 2 == 0){
         if(j % 2 == 1) fill(216,216,216);
-        else fill(255);        
+        else fill(255,51,51);        
       }else{
         if(j % 2 == 0) fill(216,216,216);
-        else fill(255);   
+        else fill(255,51,51);   
       }
        rect(i*gap,j*gap,gap,gap);
     }
-  }   
+  }
+  //create black diamond on the floor  
   noStroke();
   fill(0);
   for(int i = 0; i <= 12; i++){
@@ -149,9 +185,9 @@ void statInterface(){
   textAlign(LEFT); 
   
   fill(players.get(0).colour);
-  text("Life: " + players.get(0).life,10,20);
+  text("Life: " + parseInt(players.get(0).life),10,20);
   fill(players.get(1).colour);
-  text("Life: " + players.get(1).life,520,20);  
+  text("Life: " + parseInt(players.get(1).life),535,20);  
   
 }
 
