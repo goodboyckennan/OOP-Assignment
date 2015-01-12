@@ -14,7 +14,7 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Dec 27</b>
 - Watched "Ratatouille" to get more idea
 - Procedurally drawn the Game Floor inspired by the kitchen floor in "Ratatouille"
-- tweaked the speed of the Rat(Player)
+- Tweaked the speed of the Rat(Player)
 
 <b>Dec 28</b>
 - Created the Main Menu
@@ -25,3 +25,10 @@ A Game inspired by the "Ratatouille" Cartoon.
 
 <b>Jan 05 - Jan 08</b>
 - Exam Week
+ 
+<b>Jan 09 - Jan 11</b>
+- Weekend Break
+
+<b>Jan 12</b>
+- Created the High Score System
+- Updated Game Graphic Design
