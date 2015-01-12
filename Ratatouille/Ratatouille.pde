@@ -3,7 +3,6 @@ ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
 PFont font;
 PImage design1;
-String[] line;
 int gameState = 0;
 void setup(){
   size(600, 600);
@@ -130,8 +129,14 @@ void setUpPlayerControllers(){
 
 void highScore(){
   
+    stroke(0);
+   for(int i = 0; i < tag.length; i++){
+    text(name[i],150,(i+5)*20);
+    text(tag[i],250,(i+5)*20);
+  }
 }
 
+String[] line;
 String[] name;
 int[] tag;
 
@@ -144,6 +149,20 @@ void loadHighScore(){
     String[] data = split(line[i],",");
     name[i] = data[0];
     tag[i] = parseInt(data[1]);
+  }
+  //sort data
+  for(int i = 0; i < (tag.length - 1); i++){
+    for(int j = 0; j < (tag.length - i - 1); j++  ){
+      if(tag[j] < tag[j+1]){  
+        int scoreTemp = tag[j];
+        tag[j] = tag[j+1];
+        tag[j+1] = scoreTemp;
+        
+        String nameTemp = name[j];
+        name[j] = name[j+1];
+        name[j+1] = nameTemp;
+      }
+    }
   }
 }
 
