@@ -4,6 +4,8 @@ boolean[] keys = new boolean[526];
 PFont font;
 PImage design1;
 int gameState = 0;
+Score tagScore;
+Score survivalScore;
 void setup(){
   size(600, 600);
   font = loadFont("copperplate.vlw");
@@ -12,11 +14,14 @@ void setup(){
   objects.add(new Spatula(200,200));
   objects.add(new Spatula(400,200));
   
-  loadHighScore();
+  tagScore = new Score();
+  tagScore.line = loadStrings("tag.csv");
+  survivalScore = new Score();
+  survivalScore.line = loadStrings("survival.csv");
 }
 
 void draw(){
-  background(255);
+  background(0);
   
   switch(gameState){
     case 0:
@@ -29,6 +34,8 @@ void draw(){
       highScore();
       break;
   }
+
+ 
 }
 
 void gameMenu(){
@@ -40,7 +47,7 @@ void gameMenu(){
     player.display();
   }
     
-  fill(0);
+  fill(255);
   textFont(font);
   textSize(60);
   textAlign(CENTER,CENTER);
@@ -58,7 +65,7 @@ void gameMenu(){
   if(mousePressed){
     if((mouseX > 240 && mouseX < 360) && (mouseY > 280 && mouseY < 320)){
       gameState = 1;
-    }else if((mouseX > 230 && mouseX < 320) && (mouseY > 390 && mouseY < 410)){
+    }else if((mouseX > 230 && mouseX < 380) && (mouseY > 390 && mouseY < 410)){
       gameState = 3;
     }else if((mouseX > 275 && mouseX < 325) && (mouseY > 440 && mouseY < 460)){
       exit();
@@ -66,11 +73,7 @@ void gameMenu(){
   }
   
   /*
-  stroke(0,255,0);
-  for(int i = 0; i < 12; i++){
-    line(0,50*i,width,50*i);
-    line(50*i,0,50*i,height);    
-  }
+  
   */
 }
 
@@ -128,42 +131,30 @@ void setUpPlayerControllers(){
 }
 
 void highScore(){
-  
-    stroke(0);
-   for(int i = 0; i < tag.length; i++){
-    text(name[i],150,(i+5)*20);
-    text(tag[i],250,(i+5)*20);
+   tagScore.loadHighScore();
+   survivalScore.loadHighScore();
+   stroke(255);
+   textAlign(LEFT);
+   for(int i = 0; i < 10; i++){
+     if(i == 0){
+       textSize(25);
+     }else{
+       textSize(15);
+     }
+    text((i+1) +"  "+tagScore.name[i],50,(i+7)*25);
+    text(tagScore.score[i],200,(i+7)*25);
+    
+    text((i+1) +"  "+survivalScore.name[i],350,(i+7)*25);
+    text(survivalScore.score[i],500,(i+7)*25);
   }
-}
-
-String[] line;
-String[] name;
-int[] tag;
-
-void loadHighScore(){
-  line = loadStrings("tag.csv");
-  name = new String[line.length];
-  tag = new int[line.length];  
+  textAlign(CENTER);
+  text("Main Menu",width/2,500);
   
-  for(int i = 0; i < line.length; i++){
-    String[] data = split(line[i],",");
-    name[i] = data[0];
-    tag[i] = parseInt(data[1]);
-  }
-  //sort data
-  for(int i = 0; i < (tag.length - 1); i++){
-    for(int j = 0; j < (tag.length - i - 1); j++  ){
-      if(tag[j] < tag[j+1]){  
-        int scoreTemp = tag[j];
-        tag[j] = tag[j+1];
-        tag[j+1] = scoreTemp;
-        
-        String nameTemp = name[j];
-        name[j] = name[j+1];
-        name[j+1] = nameTemp;
-      }
+  if(mousePressed){
+    if((mouseX > 255 && mouseX < 345) && (mouseY > 475 && mouseY < 500)){
+      gameState = 0;
     }
-  }
+  }  
 }
 
 void gameFloor(){
@@ -196,8 +187,8 @@ void gameFloor(){
 }
 
 void statInterface(){
-  fill(255);
-  stroke(0);
+  fill(0);
+  stroke(255);
   rect(0,0,width,50);
   
   textSize(16);
