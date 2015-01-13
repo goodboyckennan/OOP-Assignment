@@ -14,9 +14,9 @@ void setup(){
   objects.add(new Spatula(200,200));
   objects.add(new Spatula(400,200));
   
-  tagScore = new Score(50,150,"Tag");
+  tagScore = new Score(50,150);
   tagScore.line = loadStrings("tag.csv");
-  survivalScore = new Score(350,150,"Survival");
+  survivalScore = new Score(350,150);
   survivalScore.line = loadStrings("survival.csv");
 }
 
@@ -96,13 +96,22 @@ void highScore(){
    
    tagScore.display();
    survivalScore.display();
-   
-  textAlign(CENTER);
+  
+  fill(16,136,240);
+  ellipse(150,95,80,30);
+  ellipse(450,95,80,30);
+  
   fill(255);
+  textAlign(CENTER);
+  text("Tag",150,100);
+  text("Survival",450,100);
+  textSize(40);
+  text("High Score",width/2,50); 
+  textSize(24);
   text("Main Menu",width/2,500);  
   
   if(mousePressed){
-    if((mouseX > 255 && mouseX < 345) && (mouseY > 475 && mouseY < 500)){
+    if((mouseX > 230 && mouseX < 370) && (mouseY > 480 && mouseY < 500)){
       gameState = 0;
     }
   }  

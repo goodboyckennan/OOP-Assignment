@@ -3,23 +3,21 @@ class Score{
   int[] score;
   String[] line;
   int x, y;
-  String title; 
   
   Score(){
     
   }
   
-  Score(int x, int y, String t){
+  Score(int x, int y){
     this.x = x;
     this.y = y;
-    this.title = t;
   }
   
   void display(){
     stroke(255);
     noFill();
     rect(x-30,y-20,250,270);
-    
+
      textAlign(LEFT,TOP);
      for(int i = 0; i < 10; i++){
        if(i == 0){
@@ -35,16 +33,6 @@ class Score{
       text((i+1) +"  "+name[i],x,y+(i*25));
       text(score[i],x+150,y+(i*25));
     }
-    
-    
-    
-    stroke(255);
-    /*
-    for(int i = 0; i < 12; i++){
-      line(0,50*i,width,50*i);
-      line(50*i,0,50*i,height);    
-    }
-   */
   }
   
   void loadHighScore(){    
