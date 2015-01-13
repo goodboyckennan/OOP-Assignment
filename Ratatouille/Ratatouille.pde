@@ -14,9 +14,9 @@ void setup(){
   objects.add(new Spatula(200,200));
   objects.add(new Spatula(400,200));
   
-  tagScore = new Score();
+  tagScore = new Score(50,150,"Tag");
   tagScore.line = loadStrings("tag.csv");
-  survivalScore = new Score();
+  survivalScore = new Score(350,150,"Survival");
   survivalScore.line = loadStrings("survival.csv");
 }
 
@@ -90,6 +90,68 @@ void playTagGame(){
   statInterface();
 }
 
+void highScore(){
+   tagScore.loadHighScore();
+   survivalScore.loadHighScore();
+   
+   tagScore.display();
+   survivalScore.display();
+   
+  textAlign(CENTER);
+  fill(255);
+  text("Main Menu",width/2,500);  
+  
+  if(mousePressed){
+    if((mouseX > 255 && mouseX < 345) && (mouseY > 475 && mouseY < 500)){
+      gameState = 0;
+    }
+  }  
+}
+
+void gameFloor(){
+  fill(0);
+  int gap = 50;
+   
+  //make blocks with grey and white colours
+  stroke(128,128,128);
+  for(int i = 0; i <= 12; i++){
+    for(int j = 1; j <= 12; j++){
+      if(i % 2 == 0){
+        if(j % 2 == 1) fill(216,216,216);
+        else fill(255);        
+      }else{
+        if(j % 2 == 0) fill(216,216,216);
+        else fill(255);   
+      }
+       rect(i*gap,j*gap,gap,gap);
+    }
+  }
+  //create black diamond on the floor  
+  noStroke();
+  fill(0);
+  for(int i = 0; i <= 12; i++){
+    for(int j = 1; j <= 12; j++){
+      quad((gap*i)-15,(gap*j),(gap*i),(gap*j)-15,(gap*i)+15,(gap*j),(gap*i),(gap*j)+15);    
+    }
+  } 
+  
+}
+
+void statInterface(){
+  fill(0);
+  stroke(255);
+  rect(0,0,width,50);
+  
+  textSize(16);
+  textAlign(LEFT); 
+  
+  fill(players.get(0).colour);
+  text("Life: " + parseInt(players.get(0).life),10,20);
+  fill(players.get(1).colour);
+  text("Life: " + parseInt(players.get(1).life),535,20);  
+  
+}
+
 boolean checkKey(char theKey){
   return keys[Character.toUpperCase(theKey)];
 }
@@ -130,77 +192,6 @@ void setUpPlayerControllers(){
   }
 }
 
-void highScore(){
-   tagScore.loadHighScore();
-   survivalScore.loadHighScore();
-   stroke(255);
-   textAlign(LEFT);
-   for(int i = 0; i < 10; i++){
-     if(i == 0){
-       textSize(25);
-     }else{
-       textSize(15);
-     }
-    text((i+1) +"  "+tagScore.name[i],50,(i+7)*25);
-    text(tagScore.score[i],200,(i+7)*25);
-    
-    text((i+1) +"  "+survivalScore.name[i],350,(i+7)*25);
-    text(survivalScore.score[i],500,(i+7)*25);
-  }
-  textAlign(CENTER);
-  text("Main Menu",width/2,500);
-  
-  if(mousePressed){
-    if((mouseX > 255 && mouseX < 345) && (mouseY > 475 && mouseY < 500)){
-      gameState = 0;
-    }
-  }  
-}
-
-void gameFloor(){
-  fill(0);
-  int gap = 50;
-   
-  //make blocks with grey and white colours
-  stroke(128,128,128);
-  for(int i = 0; i <= 12; i++){
-    for(int j = 1; j <= 12; j++){
-      if(i % 2 == 0){
-        if(j % 2 == 1) fill(216,216,216);
-        else fill(255,51,51);        
-      }else{
-        if(j % 2 == 0) fill(216,216,216);
-        else fill(255,51,51);   
-      }
-       rect(i*gap,j*gap,gap,gap);
-    }
-  }
-  //create black diamond on the floor  
-  noStroke();
-  fill(0);
-  for(int i = 0; i <= 12; i++){
-    for(int j = 1; j <= 12; j++){
-      quad((gap*i)-15,(gap*j),(gap*i),(gap*j)-15,(gap*i)+15,(gap*j),(gap*i),(gap*j)+15);    
-    }
-  } 
-  
-}
-
-void statInterface(){
-  fill(0);
-  stroke(255);
-  rect(0,0,width,50);
-  
-  textSize(16);
-  textAlign(LEFT); 
-  
-  fill(players.get(0).colour);
-  text("Life: " + parseInt(players.get(0).life),10,20);
-  fill(players.get(1).colour);
-  text("Life: " + parseInt(players.get(1).life),535,20);  
-  
-}
-
 void keyPressed(){
   keys[keyCode] = true;
 }
@@ -208,4 +199,6 @@ void keyPressed(){
 void keyReleased(){
   keys[keyCode] = false;
 }
+
+
 
