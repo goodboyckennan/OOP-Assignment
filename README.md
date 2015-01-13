@@ -31,4 +31,4 @@ A Game inspired by the "Ratatouille" Cartoon.
 
 <b>Jan 12</b>
 - Created the High Score System
-- Updated Game Graphic Design
+- Updated the Game Graphic Design
