@@ -52,7 +52,6 @@ void gameMenu(){
   textSize(60);
   textAlign(CENTER,CENTER);
   text("Ratatouille",width/2,150);
-  
   textSize(16);
   text("(By: Kennan Lyle Seno)",width/2,200);
   
