@@ -6,6 +6,7 @@ PImage design1;
 int gameState = 0;
 Score tagScore;
 Score survivalScore;
+ Timer timer;
 void setup(){
   size(600, 600);
   font = loadFont("copperplate.vlw");
@@ -18,6 +19,8 @@ void setup(){
   tagScore.line = loadStrings("tag.csv");
   survivalScore = new Score(350,150);
   survivalScore.line = loadStrings("survival.csv");
+  
+  timer = new Timer(width/2,35,millis());
 }
 
 void draw(){
@@ -70,10 +73,6 @@ void gameMenu(){
       exit();
     }
   }
-  
-  /*
-  
-  */
 }
 
 void playTagGame(){
@@ -150,13 +149,17 @@ void statInterface(){
   stroke(255);
   rect(0,0,width,50);
   
-  textSize(16);
-  textAlign(LEFT); 
+  fill(255);
+  textSize(25);
+  timer.display();
   
+  textSize(16);
+  textAlign(CENTER); 
+   
   fill(players.get(0).colour);
-  text("Life: " + parseInt(players.get(0).life),10,20);
+  text("Life: " + parseInt(players.get(0).life),35,20);
   fill(players.get(1).colour);
-  text("Life: " + parseInt(players.get(1).life),535,20);  
+  text("Life: " + parseInt(players.get(1).life),565,20);  
   
 }
 
