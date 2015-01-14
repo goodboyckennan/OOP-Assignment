@@ -18,7 +18,6 @@ class Timer{
       minute++;
       second = 0;
     }
-    println(millis());
     text(minute +":"+second,x,y);
   }
 }

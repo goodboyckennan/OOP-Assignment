@@ -12,8 +12,8 @@ void setup(){
   font = loadFont("copperplate.vlw");
   design1 = loadImage("");
   setUpPlayerControllers();
-  objects.add(new Spatula(200,200));
-  objects.add(new Spatula(400,200));
+  objects.add(new Spatula(650,200));
+  objects.add(new Spatula(750,200));
   
   tagScore = new Score(50,150);
   tagScore.line = loadStrings("tag.csv");
@@ -83,6 +83,11 @@ void playTagGame(){
       player.update();
       player.display();
     }
+  }
+  
+  for(int i = 0; i < objects.size(); i++){
+    objects.get(i).display();
+    objects.get(i).update();
   }
   
   statInterface();

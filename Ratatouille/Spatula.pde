@@ -1,5 +1,6 @@
 class Spatula extends GameObject{
   
+  
   Spatula(){
     this(width/2,height/2);
   }
@@ -11,6 +12,7 @@ class Spatula extends GameObject{
   
   void update(){
     theta += 0.15f;
+    pos.x = pos.x - speed;
   }
   
   void display(){

@@ -5,7 +5,7 @@ class GameObject{
   float theta;
   color colour;
   boolean alive;
-  float speed;
+  float speed = 2.0;
   
   GameObject(){
     alive = true; 
