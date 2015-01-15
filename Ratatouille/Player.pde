@@ -97,7 +97,7 @@ class Player extends GameObject{
     if(pos.y > height + 35){
       pos.y = 35;
     }
-    println(forward);  
+   // println(forward);  
   }
   
  

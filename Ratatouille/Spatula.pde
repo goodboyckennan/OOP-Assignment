@@ -2,14 +2,22 @@ class Spatula extends GameObject{
   
   
   Spatula(){
-    this(width/2,height/2,random(0,PI),true);
+    this(random(0,TWO_PI),true);
+    
   }
   
-  Spatula(float x, float y,float t,boolean a){
-    pos.x = x;
-    pos.y = y;
+  Spatula(float t,boolean a){
     theta = t;
     alive = a;
+    
+    if(theta < HALF_PI){
+      pos.x = -50;
+      pos.y = random(0,height);
+    }
+    if(theta > HALF_PI && theta < PI){
+      pos.x = random(0,width);
+      pos.y = 0;
+    }
   }
   
   void update(){  
@@ -17,7 +25,20 @@ class Spatula extends GameObject{
     forward.x = sin(theta)*speed;
     forward.y = -cos(theta)*speed;
     pos.add(forward);
-    
+    println(theta);
+    println(pos);
+   if(pos.x < -50){
+     pos.x = width+50;
+   }
+   if(pos.x > width+50){
+     pos.x = -50;
+   }
+   if(pos.y < 0){
+     pos.y = height+50;
+   }
+   if(pos.y > height){
+     pos.y = 0;
+   }
   }
   
   void display(){

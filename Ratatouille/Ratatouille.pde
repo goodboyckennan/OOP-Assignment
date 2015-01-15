@@ -12,8 +12,8 @@ void setup(){
   font = loadFont("copperplate.vlw");
   design1 = loadImage("");
   setUpPlayerControllers();
-  objects.add(new Spatula(random(0,550),random(0,550),random(PI),true));
-  objects.add(new Spatula(random(0,550),random(0,550),random(PI),true));
+  objects.add(new Spatula(random(TWO_PI),true));
+ //objects.add(new Spatula(random(TWO_PI),true));
   
   tagScore = new Score(50,150);
   tagScore.line = loadStrings("tag.csv");
