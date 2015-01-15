@@ -2,20 +2,26 @@ class Spatula extends GameObject{
   
   
   Spatula(){
-    this(width/2,height/2);
+    this(width/2,height/2,random(0,PI),true);
   }
   
-  Spatula(float x, float y){
+  Spatula(float x, float y,float t,boolean a){
     pos.x = x;
     pos.y = y;
+    theta = t;
+    alive = a;
   }
   
-  void update(){
-    theta += 0.15f;
-    pos.x = pos.x - speed;
+  void update(){  
+    speed = 2.0f;
+    forward.x = sin(theta)*speed;
+    forward.y = -cos(theta)*speed;
+    pos.add(forward);
+    
   }
   
   void display(){
+    
     pushMatrix();
     translate(pos.x,pos.y);
     rotate(theta);
