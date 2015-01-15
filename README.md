@@ -37,3 +37,7 @@ A Game inspired by the "Ratatouille" Cartoon.
 - Updated the High Score Page Design
 - Updated the Game Floor colour
 
+<b>Jan 14</b>
+- Timer Added
+- Started on Spatula Spawning
+
