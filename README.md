@@ -41,6 +41,6 @@ A Game inspired by the "Ratatouille" Cartoon.
 - Timer Added
 - Started on Spatula Spawning
 
-<b>Jan 14</b>
+<b>Jan 15</b>
 - Worked on Spatula Spawn and Movement(Not finished)
 
