@@ -44,3 +44,6 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Jan 15</b>
 - Worked on Spatula Spawn and Movement(Not finished)
 
+<b>Jan 16</b>
+- Drawn cheese using ellipse function
+
