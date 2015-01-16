@@ -29,6 +29,7 @@ class Spatula extends GameObject{
     forward.x = sin(theta)*speed;
     forward.y = -cos(theta)*speed;
     pos.add(forward);
+    println(forward);
     println(theta);
     println(pos);
    if(pos.x < -50){
