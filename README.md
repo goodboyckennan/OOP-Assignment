@@ -47,3 +47,5 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Jan 16</b>
 - Drawn cheese using ellipse function
 
+<b>Jan 17</b>
+- Weekend Break
