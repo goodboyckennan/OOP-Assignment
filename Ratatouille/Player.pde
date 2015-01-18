@@ -8,6 +8,8 @@ class Player extends GameObject{
   char button2;
   int index;
   float life = 3;
+  
+  AudioPlayer move;
     
   Player(){
     pos = new PVector(width / 2, height / 2);
@@ -60,10 +62,15 @@ class Player extends GameObject{
    popMatrix();
   }  
   
+  
   void update(){
+
+
     speed = 2.0f;
     forward.x = sin(theta)*speed;
     forward.y = -cos(theta)*speed;
+    
+    
     if (checkKey(up)){
       pos.add(forward);
     }
@@ -76,6 +83,7 @@ class Player extends GameObject{
     if (checkKey(right)){
       theta += 0.1f;
     }
+    
     if (checkKey(start)){
       println("Player " + index + " start");
     }
@@ -97,7 +105,9 @@ class Player extends GameObject{
     if(pos.y > height + 35){
       pos.y = 35;
     }
-   // println(forward);  
+   // println(forward); 
+  
+     
   }
   
  

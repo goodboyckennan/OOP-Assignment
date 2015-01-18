@@ -1,9 +1,16 @@
+import ddf.minim.*;
+
 ArrayList<Player> players = new ArrayList<Player>();
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
 PFont font;
 PImage design1;
 int gameState = 0;
+
+Minim minim = new Minim(this);
+AudioPlayer spatulaHit;
+AudioPlayer foodHit;
+
 Score tagScore;
 Score survivalScore;
  Timer timer;
@@ -12,6 +19,7 @@ void setup(){
   font = loadFont("copperplate.vlw");
   design1 = loadImage("");
   setUpPlayerControllers();
+ 
   objects.add(new Food(200,200,50,50));
   objects.add(new Spatula(400,200,random(TWO_PI),true));
  //objects.add(new Spatula(200,200,random(TWO_PI),true));
@@ -201,10 +209,12 @@ void setUpPlayerControllers(){
     Player p = new Player(
             i
             , color(random(0, 255), random(0, 255), random(0, 255))
-            , playerXML);
+            , playerXML
+            );
     int x = (i + 1) * gap;
     p.pos.x = x;
     p.pos.y = 300;
+   p.move = minim.loadFile("move.wav");
     players.add(p);         
   }
 }
