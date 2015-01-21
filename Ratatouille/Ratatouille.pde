@@ -8,6 +8,9 @@ PImage design1;
 int gameState = 0;
 Player p;
 
+int currentSlot;
+char letter[];
+char name[]; 
 
 Minim minim = new Minim(this);
 AudioPlayer foodHit;
@@ -21,10 +24,9 @@ void setup(){
   design1 = loadImage("");
   setUpPlayerControllers();
  
-  //objects.add(new Food(200,200,50,50));
-  //objects.add(new Spatula(400,200,random(TWO_PI),true));
- //objects.add(new Spatula(200,200,random(TWO_PI),true));
-  
+  letter = new char[] {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+  name = new char[] {'A','A','A'};
+  currentSlot = 0;
   tagScore = new Score(50,150);
   tagScore.line = loadStrings("tag.csv");
   survivalScore = new Score(350,150);
@@ -131,7 +133,7 @@ void tutorial(){
 void playTagGame(){
   gameFloor();
   
-  if(timer.minute < 3){
+  if(timer.second < 10){
     spawnFood();
     for(int i = 0; i < objects.size(); i++){
       objects.get(i).display();
@@ -158,8 +160,56 @@ void playTagGame(){
     }
     statInterface();
   }else{
-    
+    gameResult();
   }
+}
+
+int currentLetter = 0;
+
+void gameResult(){
+   gameFloor();
+   int winner = 0;
+   
+   if(players.get(0).points > players.get(1).points) winner = 1;
+   else if(players.get(0).points < players.get(1).points) winner = 2;
+   else if(players.get(0).points == players.get(1).points) winner = 0;
+   
+   println(currentLetter);
+   println(name[0]);
+   println(currentSlot);
+  
+  fill(16,136,240);
+  ellipse(width/2,height/2,500,300);
+  
+  textSize(24);
+  textAlign(CENTER);
+  fill(0);
+  if(winner != 0){
+    text("Player " + winner + " wins!",width/2,200);
+    text("Points: " + players.get(winner-1).points,width/2,230);
+    text("Enter Name",width/2,290);
+    int gap = 20;
+    for(int i = 0; i < name.length; i++){
+      text(name[i],(width/2 - gap) + (i*gap),320);
+    }
+  }else{
+    text("Draw!",width/2,200);
+  }
+  
+  if(keyPressed){
+    if(key == players.get(winner-1).left && currentLetter > 0 && (frameCount % 10) == 0){
+     currentLetter += 1;  
+    }
+    if(key == players.get(winner-1).right  && currentLetter < 25 && (frameCount % 10) == 0){
+     currentLetter += 1;  
+    }
+    if(key == players.get(winner-1).button1 && currentSlot <= 2 && (frameCount % 10) == 0){
+      currentSlot += 1;
+      currentLetter = 0;
+    }
+  }
+  
+  name[currentSlot] = letter[currentLetter];
 }
 
 void highScore(){
