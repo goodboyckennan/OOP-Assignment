@@ -8,14 +8,11 @@ class Player extends GameObject{
   char button2;
   int index;
   float life = 3;
-
-  
-  AudioPlayer move;
+  float points = 0;
     
   Player(){
     pos = new PVector(width / 2, height / 2);
-  }
-  
+  } 
   Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2)
   {
     this();
@@ -31,7 +28,6 @@ class Player extends GameObject{
      w = 20;
      h = 45;
   }
-  
   Player(int index, color colour, XML xml){
     this(index
         , colour
@@ -50,9 +46,6 @@ class Player extends GameObject{
    translate(pos.x,pos.y);
    rotate(theta);
    
-   fill(255,0,0);
-   rect(-10,-15,20,45);
-   
    stroke(128,128,128);
    fill(128,128,128);
    ellipse(0,10,20,35);
@@ -66,17 +59,13 @@ class Player extends GameObject{
    line(0,28,-5,35);
     
    popMatrix();
-  }  
-  
+  }    
   
   void update(){
-
-
     speed = 2.0f;
     forward.x = sin(theta)*speed;
     forward.y = -cos(theta)*speed;
-    
-    
+      
     if (checkKey(up)){
       pos.add(forward);
     }
@@ -89,7 +78,6 @@ class Player extends GameObject{
     if (checkKey(right)){
       theta += 0.1f;
     }
-    
     if (checkKey(start)){
       println("Player " + index + " start");
     }
@@ -110,11 +98,6 @@ class Player extends GameObject{
     }
     if(pos.y > height + 35){
       pos.y = 35;
-    }
-   // println(forward); 
-  
-     
-  }
-  
- 
+    }     
+  } 
 }

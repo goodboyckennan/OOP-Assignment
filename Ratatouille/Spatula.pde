@@ -1,11 +1,9 @@
 class Spatula extends GameObject{
-  
-  
+   
   Spatula(){
     this(width/2,height/2,random(0,TWO_PI),true);
     
-  }
-  
+  }  
   Spatula(int x,int y,float t,boolean a){
     theta = t;
     alive = a;

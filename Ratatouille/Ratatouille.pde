@@ -9,7 +9,6 @@ int gameState = 0;
 Player p;
 
 Minim minim = new Minim(this);
-AudioPlayer spatulaHit;
 AudioPlayer foodHit;
 
 Score tagScore;
@@ -30,6 +29,7 @@ void setup(){
   survivalScore = new Score(350,150);
   survivalScore.line = loadStrings("survival.csv");
   
+  foodHit = minim.loadFile("move.wav");
   timer = new Timer(width/2,35,millis());
 }
 
@@ -41,7 +41,7 @@ void draw(){
       gameMenu();
       break;
     case 1:
-      playTagGame();
+      Tutorial();
       break;
     case 3:
       highScore();
@@ -85,33 +85,39 @@ void gameMenu(){
   }
 }
 
+void tutorial(){
+
+}
+
 void playTagGame(){
   gameFloor();
   spawnFood();
-  
-  for(Player player:players){
-    if(player.life > 0){
-      player.update();
-      player.display();
-    }
-    
-   
-    
-    /*
-    //collision
-    for(int i = 0; i < objects.size(); i++){
-      if(player.collide(objects.get(i))){
-        player.pos.x = 250;
-        player.pos.y = 300;
-      }
-    }
-    */
-  }
   
   for(int i = 0; i < objects.size(); i++){
     objects.get(i).display();
     objects.get(i).update();
   }
+  
+  for(Player player:players){
+    if(player.life > 0){
+      player.update();
+      player.display();
+    }  
+    for(int i = 0; i < objects.size(); i++){
+      if(player.collide(objects.get(i))){
+        if(keyPressed){
+          if(key == player.button1){
+            player.points += 500;
+            objects.remove(i);
+            foodHit.rewind();
+            foodHit.play();
+          }
+        }
+      }
+    }
+  }
+  
+  
 
   statInterface();
 }
@@ -143,13 +149,18 @@ void highScore(){
   }  
 }
 
-void spawnFood(){  
-   if(timer.second == 10){
-      objects.add(new Food(random(width),random(50,height),50,50));
+void spawnFood(){
+  
+   if(timer.second % 5 == 0){
+     if(frameCount % 60 == 0){  
+        objects.add(new Food(random(width),random(50,height),50,50));
+     } 
     } 
-    if(timer.second == 12){
-      objects.remove(0);
-    }
+    if(timer.second % 10 == 0){
+      if(frameCount % 60 == 0){
+        objects.clear();
+      }
+    }  
 }
 
 void gameFloor(){
@@ -188,15 +199,20 @@ void statInterface(){
   
   fill(255);
   textSize(25);
+  textAlign(CENTER);
   timer.display();
   
   textSize(16);
-  textAlign(CENTER); 
-   
+  
+  textAlign(LEFT); 
   fill(players.get(0).colour);
-  text("Life: " + parseInt(players.get(0).life),35,20);
+  text("Life: " + parseInt(players.get(0).life),10,20);
+  text("Points: " + parseInt(players.get(0).points),10,40);
+  
+  textAlign(RIGHT);
   fill(players.get(1).colour);
-  text("Life: " + parseInt(players.get(1).life),565,20);  
+  text("Life: " + parseInt(players.get(1).life),width-10,20);
+  text("Points: " + parseInt(players.get(1).points),width-10,40);  
   
 }
 
@@ -237,7 +253,6 @@ void setUpPlayerControllers(){
     int x = (i + 1) * gap;
     p.pos.x = x;
     p.pos.y = 300;
-   p.move = minim.loadFile("move.wav");
     players.add(p);         
   }
 }

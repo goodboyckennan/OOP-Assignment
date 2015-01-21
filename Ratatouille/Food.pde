@@ -1,10 +1,8 @@
-class Food extends GameObject{
-  
+class Food extends GameObject{ 
   
   Food(){
   
-  }
-  
+  } 
   Food(float x, float y,float w,float h){
     pos.x = x;
     pos.y = y;
