@@ -198,17 +198,16 @@ void gameResult(){
   
   if(keyPressed){
     if(key == players.get(winner-1).left && currentLetter > 0 && (frameCount % 10) == 0){
-     currentLetter += 1;  
+     currentLetter -= 1;  
     }
     if(key == players.get(winner-1).right  && currentLetter < 25 && (frameCount % 10) == 0){
      currentLetter += 1;  
     }
-    if(key == players.get(winner-1).button1 && currentSlot <= 2 && (frameCount % 10) == 0){
+    if(key == players.get(winner-1).button1 && currentSlot < 2 && (frameCount % 10) == 0){
       currentSlot += 1;
       currentLetter = 0;
     }
   }
-  
   name[currentSlot] = letter[currentLetter];
 }
 
@@ -354,6 +353,5 @@ void keyPressed(){
 void keyReleased(){
   keys[keyCode] = false;
 }
-
 
 
