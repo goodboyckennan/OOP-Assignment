@@ -8,6 +8,7 @@ PImage design1;
 int gameState = 0;
 Player p;
 
+
 Minim minim = new Minim(this);
 AudioPlayer foodHit;
 
@@ -41,8 +42,11 @@ void draw(){
       gameMenu();
       break;
     case 1:
-      Tutorial();
+      tutorial();
       break;
+    case 2:
+      playTagGame();
+      break;   
     case 3:
       highScore();
       break;
@@ -86,40 +90,76 @@ void gameMenu(){
 }
 
 void tutorial(){
-
+  gameFloor();
+  
+  fill(16,136,240);
+  ellipse(width/2,height/2,500,300);
+  
+  textSize(16);
+  textAlign(CENTER);
+  fill(0);
+  text("Goal: Eat as much food within 3 minutes!",width/2,220);
+  
+  //player 1 controls
+  text("Player 1:",200,260);
+  text("Up - " + "'"+players.get(0).up+"'",200,280);
+  text("Down - " + "'"+players.get(0).down+"'",200,300);
+  text("Left - " + "'"+players.get(0).left+"'",200,320);
+  text("Right - " + "'"+players.get(0).right+"'",200,340);
+  text("Eat Food - " + "'"+players.get(0).button1+"'",200,360);
+         
+  //player 2 controls
+  text("Player 2:",400,260);
+  text("Up - " + "'"+players.get(1).up+"'",400,280);
+  text("Down - " + "'"+players.get(1).down+"'",400,300);
+  text("Left - " + "'"+players.get(1).left+"'",400,320);
+  text("Right - " + "'"+players.get(1).right+"'",400,340);
+  text("Eat Food - " + "'"+players.get(1).button1+"'",400,360);
+  
+  fill(255);
+  textSize(20);
+  text("Play",width/2,425);
+  if(mousePressed){
+    if(mouseX > 270 && mouseX < 330 && mouseY > 415 && mouseY < 435){
+      if(gameState == 1){
+        gameState = 2;
+      }
+    }
+  }
 }
 
 void playTagGame(){
   gameFloor();
-  spawnFood();
   
-  for(int i = 0; i < objects.size(); i++){
-    objects.get(i).display();
-    objects.get(i).update();
-  }
-  
-  for(Player player:players){
-    if(player.life > 0){
-      player.update();
-      player.display();
-    }  
+  if(timer.minute < 3){
+    spawnFood();
     for(int i = 0; i < objects.size(); i++){
-      if(player.collide(objects.get(i))){
-        if(keyPressed){
-          if(key == player.button1){
-            player.points += 500;
-            objects.remove(i);
-            foodHit.rewind();
-            foodHit.play();
+      objects.get(i).display();
+      objects.get(i).update();
+    }
+ 
+    for(Player player:players){
+      if(player.life > 0){
+        player.update();
+        player.display();
+      }  
+      for(int i = 0; i < objects.size(); i++){
+        if(player.collide(objects.get(i))){
+          if(keyPressed){
+            if(key == player.button1){
+              player.points += 500;
+              objects.remove(i);
+              foodHit.rewind();
+              foodHit.play();
+            }
           }
         }
       }
     }
+    statInterface();
+  }else{
+    
   }
-  
-  
-
-  statInterface();
 }
 
 void highScore(){
@@ -194,7 +234,7 @@ void gameFloor(){
 
 void statInterface(){
   fill(0);
-  stroke(255);
+  noStroke();
   rect(0,0,width,50);
   
   fill(255);
