@@ -8,6 +8,7 @@ class Player extends GameObject{
   char button2;
   int index;
   float life = 3;
+
   
   AudioPlayer move;
     
@@ -27,6 +28,8 @@ class Player extends GameObject{
     this.start = start;
     this.button1 = button1;
     this.button2 = button2;
+     w = 20;
+     h = 45;
   }
   
   Player(int index, color colour, XML xml){
@@ -46,6 +49,9 @@ class Player extends GameObject{
    pushMatrix();
    translate(pos.x,pos.y);
    rotate(theta);
+   
+   fill(255,0,0);
+   rect(-10,-15,20,45);
    
    stroke(128,128,128);
    fill(128,128,128);

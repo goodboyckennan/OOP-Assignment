@@ -1,5 +1,5 @@
 class Food extends GameObject{
-  float w,h;
+  
   
   Food(){
   

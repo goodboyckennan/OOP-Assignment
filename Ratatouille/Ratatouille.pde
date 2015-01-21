@@ -6,6 +6,7 @@ boolean[] keys = new boolean[526];
 PFont font;
 PImage design1;
 int gameState = 0;
+Player p;
 
 Minim minim = new Minim(this);
 AudioPlayer spatulaHit;
@@ -20,8 +21,8 @@ void setup(){
   design1 = loadImage("");
   setUpPlayerControllers();
  
-  objects.add(new Food(200,200,50,50));
-  objects.add(new Spatula(400,200,random(TWO_PI),true));
+  //objects.add(new Food(200,200,50,50));
+  //objects.add(new Spatula(400,200,random(TWO_PI),true));
  //objects.add(new Spatula(200,200,random(TWO_PI),true));
   
   tagScore = new Score(50,150);
@@ -86,19 +87,32 @@ void gameMenu(){
 
 void playTagGame(){
   gameFloor();
+  spawnFood();
   
   for(Player player:players){
     if(player.life > 0){
       player.update();
       player.display();
     }
+    
+   
+    
+    /*
+    //collision
+    for(int i = 0; i < objects.size(); i++){
+      if(player.collide(objects.get(i))){
+        player.pos.x = 250;
+        player.pos.y = 300;
+      }
+    }
+    */
   }
   
   for(int i = 0; i < objects.size(); i++){
     objects.get(i).display();
     objects.get(i).update();
   }
-  
+
   statInterface();
 }
 
@@ -127,6 +141,15 @@ void highScore(){
       gameState = 0;
     }
   }  
+}
+
+void spawnFood(){  
+   if(timer.second == 10){
+      objects.add(new Food(random(width),random(50,height),50,50));
+    } 
+    if(timer.second == 12){
+      objects.remove(0);
+    }
 }
 
 void gameFloor(){
@@ -206,7 +229,7 @@ void setUpPlayerControllers(){
   
   for(int i = 0 ; i < children.length ; i ++)  {
     XML playerXML = children[i];
-    Player p = new Player(
+           p = new Player(
             i
             , color(random(0, 255), random(0, 255), random(0, 255))
             , playerXML
