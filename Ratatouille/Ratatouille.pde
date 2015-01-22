@@ -8,6 +8,7 @@ PImage design1;
 int gameState = 0;
 Player p;
 
+int currentLetter;
 int currentSlot;
 char letter[];
 char name[]; 
@@ -23,14 +24,14 @@ void setup(){
   font = loadFont("copperplate.vlw");
   design1 = loadImage("");
   setUpPlayerControllers();
- 
+  
   letter = new char[] {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
   name = new char[] {'A','A','A'};
   currentSlot = 0;
+  currentLetter = 0;
   tagScore = new Score(50,150);
-  tagScore.line = loadStrings("tag.csv");
   survivalScore = new Score(350,150);
-  survivalScore.line = loadStrings("survival.csv");
+  
   
   foodHit = minim.loadFile("move.wav");
   timer = new Timer(width/2,35,millis());
@@ -67,11 +68,13 @@ void gameMenu(){
   fill(255);
   textFont(font);
   textSize(60);
+  //logo
   textAlign(CENTER,CENTER);
   text("Ratatouille",width/2,150);
   textSize(16);
   text("(By: Kennan Lyle Seno)",width/2,200);
   
+  //menu
   textSize(24); 
   text("Play Tag",width/2,300);
   text("Play Survival",width/2,350);
@@ -89,6 +92,7 @@ void gameMenu(){
   }
 }
 
+//Tutorial page
 void tutorial(){
   gameFloor();
   
@@ -126,21 +130,25 @@ void tutorial(){
   }
 }
 
+//gameplay
 void playTagGame(){
   gameFloor();
   
+  //change to 3min when done testing
   if(timer.second < 10){
+    //display food
     spawnFood();
     for(int i = 0; i < objects.size(); i++){
       objects.get(i).display();
       objects.get(i).update();
     }
- 
+     //display players
     for(Player player:players){
       if(player.life > 0){
         player.update();
         player.display();
-      }  
+      }
+      //collision code  
       for(int i = 0; i < objects.size(); i++){
         if(player.collide(objects.get(i))){
           if(keyPressed){
@@ -160,21 +168,18 @@ void playTagGame(){
   }
 }
 
-int currentLetter = 0;
-
 void gameResult(){
    gameFloor();
    int winner = 0;
-   
+    //set winner 
    if(players.get(0).points > players.get(1).points) winner = 1;
    else if(players.get(0).points < players.get(1).points) winner = 2;
    else if(players.get(0).points == players.get(1).points) winner = 0;
-   
-   println(currentSlot);
   
   fill(16,136,240);
   ellipse(width/2,height/2,500,300);
   
+  //display result
   textSize(24);
   textAlign(CENTER);
   fill(0);
@@ -190,28 +195,32 @@ void gameResult(){
     text("Draw!",width/2,200);
   }
   
+  //check when writing name
   if(keyPressed){
-    if(key == players.get(winner-1).left && currentLetter > 0 && (frameCount % 10) == 0){
-     currentLetter -= 1;  
-    }
-    if(key == players.get(winner-1).right  && currentLetter < 25 && (frameCount % 10) == 0){
-     currentLetter += 1;  
-    }
-    if(key == players.get(winner-1).button1 && currentSlot < 3 && (frameCount % 10) == 0){
-      currentSlot += 1;
-      currentLetter = 0;
+    if(frameCount % 10 == 0){   
+      if(key == players.get(winner-1).left && currentLetter > 0){
+       currentLetter -= 1;  
+      }
+      if(key == players.get(winner-1).right  && currentLetter < 25){
+       currentLetter += 1;  
+      }
+      if(key == players.get(winner-1).button1 && currentSlot < 3){
+        currentSlot += 1;
+        currentLetter = 0;
+      }
     }
     //save to csv file
     if(key == players.get(winner-1).button1 && currentSlot == 3 && (frameCount % 10) == 0){
       highScore = String.valueOf(name[0]) + String.valueOf(name[1]) + String.valueOf(name[2]) + "," + (int)(players.get(winner-1).points);     
       String[] list = split(highScore, ' ');
-      saveStrings("tag.csv",list);
+      saveStrings("data/tag.csv",list);      
     }
   }
    if(currentSlot < 3){
       name[currentSlot] = letter[currentLetter];
    }
-   
+  
+  //navigate back to main menu/play again 
   fill(255);
   textSize(20);
   text("Play Again",width/2,400);
@@ -228,11 +237,28 @@ void gameResult(){
   }   
 }
 
+//reset stats
 void resetStats(){
-  for
+  int gap = width / (players.size() + 1);
+  
+  for(int i = 0; i < players.size(); i++){
+    Player p = players.get(i);
+    p.pos.x =  (i + 1) * gap;
+    p.pos.y = 300;
+    p.points = 0;   
+  }
+  timer.minute = 0;
+  timer.second = 0;
+  currentSlot = 0;
+  currentLetter = 0;
+  name[currentSlot] = letter[currentLetter];
 }
 
+//high score page
 void highScore(){
+   tagScore.line = loadStrings("tag.csv");
+   survivalScore.line = loadStrings("survival.csv");
+  
    tagScore.loadHighScore();
    survivalScore.loadHighScore();
    
@@ -258,6 +284,7 @@ void highScore(){
     }
   }  
 }
+
 
 void spawnFood(){
    if(timer.second % 5 == 0){
@@ -301,6 +328,7 @@ void gameFloor(){
   
 }
 
+//Status interface during gameplays
 void statInterface(){
   fill(0);
   noStroke();
@@ -315,12 +343,12 @@ void statInterface(){
   
   textAlign(LEFT); 
   fill(players.get(0).colour);
-  text("Life: " + parseInt(players.get(0).life),10,20);
+  text("Player 1",10,20);
   text("Points: " + parseInt(players.get(0).points),10,40);
   
   textAlign(RIGHT);
   fill(players.get(1).colour);
-  text("Life: " + parseInt(players.get(1).life),width-10,20);
+  text("Player 2",width-10,20);
   text("Points: " + parseInt(players.get(1).points),width-10,40);  
   
 }

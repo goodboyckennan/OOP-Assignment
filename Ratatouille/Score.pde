@@ -18,7 +18,7 @@ class Score{
     rect(x-30,y-20,250,270);
 
      textAlign(LEFT,TOP);
-     for(int i = 0; i < 10; i++){
+     for(int i = 0; i < name.length; i++){
        if(i == 0){
          textSize(25);
          fill(255,215,0);
@@ -57,7 +57,6 @@ class Score{
       }
     }
   }
- }
+ } 
  
-
 }
