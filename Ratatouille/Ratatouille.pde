@@ -11,7 +11,7 @@ Player p;
 int currentSlot;
 char letter[];
 char name[]; 
-
+String highScore = ""; 
 Minim minim = new Minim(this);
 AudioPlayer foodHit;
 
@@ -52,9 +52,7 @@ void draw(){
     case 3:
       highScore();
       break;
-  }
-
- 
+  } 
 }
 
 void gameMenu(){
@@ -122,10 +120,8 @@ void tutorial(){
   textSize(20);
   text("Play",width/2,425);
   if(mousePressed){
-    if(mouseX > 270 && mouseX < 330 && mouseY > 415 && mouseY < 435){
-      if(gameState == 1){
-        gameState = 2;
-      }
+    if(mouseX > 270 && mouseX < 330 && mouseY > 415 && mouseY < 435){      
+      gameState = 2;
     }
   }
 }
@@ -174,8 +170,6 @@ void gameResult(){
    else if(players.get(0).points < players.get(1).points) winner = 2;
    else if(players.get(0).points == players.get(1).points) winner = 0;
    
-   println(currentLetter);
-   println(name[0]);
    println(currentSlot);
   
   fill(16,136,240);
@@ -186,7 +180,7 @@ void gameResult(){
   fill(0);
   if(winner != 0){
     text("Player " + winner + " wins!",width/2,200);
-    text("Points: " + players.get(winner-1).points,width/2,230);
+    text("Points: " + (int)(players.get(winner-1).points),width/2,230);
     text("Enter Name",width/2,290);
     int gap = 20;
     for(int i = 0; i < name.length; i++){
@@ -203,12 +197,39 @@ void gameResult(){
     if(key == players.get(winner-1).right  && currentLetter < 25 && (frameCount % 10) == 0){
      currentLetter += 1;  
     }
-    if(key == players.get(winner-1).button1 && currentSlot < 2 && (frameCount % 10) == 0){
+    if(key == players.get(winner-1).button1 && currentSlot < 3 && (frameCount % 10) == 0){
       currentSlot += 1;
       currentLetter = 0;
     }
+    //save to csv file
+    if(key == players.get(winner-1).button1 && currentSlot == 3 && (frameCount % 10) == 0){
+      highScore = String.valueOf(name[0]) + String.valueOf(name[1]) + String.valueOf(name[2]) + "," + (int)(players.get(winner-1).points);     
+      String[] list = split(highScore, ' ');
+      saveStrings("tag.csv",list);
+    }
   }
-  name[currentSlot] = letter[currentLetter];
+   if(currentSlot < 3){
+      name[currentSlot] = letter[currentLetter];
+   }
+   
+  fill(255);
+  textSize(20);
+  text("Play Again",width/2,400);
+  text("Main Menu",width/2,420);
+  if(mousePressed){
+    if(mouseX > 245 && mouseX < 355 && mouseY > 390 && mouseY < 410){      
+      gameState = 1;
+    }else if(mouseX > 245 && mouseX < 355 && mouseY > 410 && mouseY < 430){
+      gameState = 0;
+    }
+    if(gameState == 0 || gameState == 1){
+      resetStats();
+    }
+  }   
+}
+
+void resetStats(){
+  for
 }
 
 void highScore(){
@@ -239,7 +260,6 @@ void highScore(){
 }
 
 void spawnFood(){
-  
    if(timer.second % 5 == 0){
      if(frameCount % 60 == 0){  
         objects.add(new Food(random(width),random(50,height),50,50));
