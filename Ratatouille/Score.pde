@@ -3,6 +3,7 @@ class Score{
   int[] score;
   String[] line;
   int x, y;
+  String[] data;
   
   Score(){
     
@@ -16,9 +17,9 @@ class Score{
     stroke(255);
     noFill();
     rect(x-30,y-20,250,270);
-
+    
      textAlign(LEFT,TOP);
-     for(int i = 0; i < name.length; i++){
+     for(int i = 0; i < 10; i++){
        if(i == 0){
          textSize(25);
          fill(255,215,0);
@@ -39,7 +40,7 @@ class Score{
   score = new int[line.length];    
   
   for(int i = 0; i < line.length; i++){
-    String[] data = split(line[i],",");
+    data = split(line[i],",");
     name[i] = data[0];
     score[i] = parseInt(data[1]);
   }
