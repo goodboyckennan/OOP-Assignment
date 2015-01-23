@@ -29,7 +29,6 @@ void setup(){
   name = new char[] {'A','A','A'};
   currentSlot = 0;
   currentLetter = 0;
-  tagScore = new Score(50,150);
   survivalScore = new Score(350,150);
   
   
@@ -135,7 +134,7 @@ void playTagGame(){
   gameFloor();
   
   //change to 3min when done testing
-  if(timer.second < 10){
+  if(timer.minute < 3){
     //display food
     spawnFood();
     for(int i = 0; i < objects.size(); i++){
@@ -213,13 +212,19 @@ void gameResult(){
     if(key == players.get(winner-1).button1 && currentSlot == 3 && (frameCount % 10) == 0){
       highScore = String.valueOf(name[0]) + String.valueOf(name[1]) + String.valueOf(name[2]) + "," + (int)(players.get(winner-1).points);     
       String[] list = split(highScore, ' ');
-      saveStrings("data/tag.csv",list);      
+      String[] allScores = new String[tagScore.line.length + 1];
+     for(int i = 0 ; i < tagScore.line.length ; i ++)
+      {
+        allScores[i] = tagScore.line[i];
+      } 
+      allScores[allScores.length -1] = list[0];
+      saveStrings("data/tag.csv",allScores);      
     }
   }
    if(currentSlot < 3){
       name[currentSlot] = letter[currentLetter];
    }
-  
+  println(highScore);
   //navigate back to main menu/play again 
   fill(255);
   textSize(20);
@@ -256,6 +261,7 @@ void resetStats(){
 
 //high score page
 void highScore(){
+   tagScore = new Score(50,150);
    tagScore.line = loadStrings("tag.csv");
    survivalScore.line = loadStrings("survival.csv");
   
