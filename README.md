@@ -57,5 +57,5 @@ A Game inspired by the "Ratatouille" Cartoon.
 - Added Object Collision, Tutorial Screen, Game Result Scree
 
 <b>Jan 23</b>
-- refining Tutorial Screen and Game Result Screen
+- Polished Tutorial Screen and Game Result Screen
  
