@@ -25,6 +25,7 @@ Timer timer;
 
 void setup(){
   size(600, 600);
+  tagScore = new Score(50,150);
   floor = new Floor(width,height,50);
   menu = new Menu();
   ui = new UI();
@@ -47,7 +48,7 @@ void draw(){
   
   switch(gameState){
     case 0:
-      menu.gameMenu();
+      menu.gameMenu();      
       break;
     case 1:
       menu.tutorial();
@@ -66,7 +67,7 @@ void playTagGame(){
   floor.display();
   
   //change to 3min when done testing
-  if(timer.minute < 3){
+  if(timer.second < 20){
     //display food
     spawnFood();
     for(int i = 0; i < objects.size(); i++){
@@ -118,7 +119,6 @@ void resetStats(){
 
 //high score page
 void highScore(){
-   tagScore = new Score(50,150);
    tagScore.line = loadStrings("tag.csv");
    survivalScore.line = loadStrings("survival.csv");
   

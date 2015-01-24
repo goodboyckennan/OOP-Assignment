@@ -41,8 +41,11 @@ class Score{
   
   for(int i = 0; i < line.length; i++){
     data = split(line[i],",");
+    if(data[0] != null){
+    
     name[i] = data[0];
     score[i] = parseInt(data[1]);
+    }
   }
   //sort data
   for(int i = 0; i < (score.length - 1); i++){

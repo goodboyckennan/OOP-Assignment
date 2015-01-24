@@ -1,4 +1,5 @@
 class Menu{
+  int count = 1;
   
   Menu(){
    
@@ -75,6 +76,7 @@ class Menu{
   }
   
   void gameResult(){
+   
    floor.display();
    int winner = 0;
     //set winner 
@@ -95,8 +97,7 @@ class Menu{
     text("Enter Name",width/2,290);
     int gap = 20;
     for(int i = 0; i < name.length; i++){
-      int tempFill = currentSlot;
-      if(tempFill == i){
+      if(currentSlot == i){
         fill(255);
       }else{
         fill(0);
@@ -109,6 +110,7 @@ class Menu{
   }
   
   //check when writing name
+  
   if(keyPressed){
     if(frameCount % 10 == 0){   
       if(key == players.get(winner-1).left && currentLetter > 0){
@@ -122,19 +124,22 @@ class Menu{
         currentLetter = 0;
       }
     
-    //save to csv file
+    //save to csv file 
       if(key == players.get(winner-1).button1 && currentSlot == 3){
         highScore = String.valueOf(name[0]) + String.valueOf(name[1]) + String.valueOf(name[2]) + "," + (int)(players.get(winner-1).points);     
         String[] list = split(highScore, ' ');
         String[] allScores = new String[tagScore.line.length + 1];
         
         for(int i = 0 ; i < tagScore.line.length ; i ++){
-          allScores[i] = tagScore.line[i];
+          allScores[i] = tagScore.line[i];         
         } 
-        allScores[allScores.length -1] = list[0];
-        saveStrings("data/tag.csv",allScores);      
-        }
+        allScores[allScores.length - 1] = list[0];
+        saveStrings("data/tag.csv",allScores);  
+        println("Saved!"); 
+       count += 1; 
       }
+    }
+      println("Slot: " + currentSlot  );
   }
    if(currentSlot < 3){
       name[currentSlot] = letter[currentLetter];
