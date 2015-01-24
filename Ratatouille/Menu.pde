@@ -126,6 +126,9 @@ class Menu{
     
     //save to csv file 
       if(key == players.get(winner-1).button1 && currentSlot == 3){
+        tagScore = new Score(50,150);
+        tagScore.line = loadStrings("tag.csv");
+        
         highScore = String.valueOf(name[0]) + String.valueOf(name[1]) + String.valueOf(name[2]) + "," + (int)(players.get(winner-1).points);     
         String[] list = split(highScore, ' ');
         String[] allScores = new String[tagScore.line.length + 1];
