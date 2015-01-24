@@ -9,17 +9,7 @@ class Spatula extends GameObject{
     alive = a;
     pos.x = x;
     pos.y = y;
-    
-    /*
-    if(theta < HALF_PI){
-      pos.x = -50;
-      pos.y = random(0,height);
-    }
-    if(theta > HALF_PI && theta < PI){
-      pos.x = random(0,width);
-      pos.y = 0;
-    }
-    */
+
   }
   
   void update(){  

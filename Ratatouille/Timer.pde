@@ -18,6 +18,6 @@ class Timer{
       minute++;
       second = 0;
     }
-    text(minute +":"+second,x,y);
+    text("0" + minute +":"+second,x,y);
   }
 }
