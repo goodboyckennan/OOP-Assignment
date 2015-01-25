@@ -59,3 +59,5 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Jan 23</b>
 - Polished Tutorial Screen and Game Result Screen
  
+<b>Jan 24</b>
+- Polished Gameplay collision and Highscore System
