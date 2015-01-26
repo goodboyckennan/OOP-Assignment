@@ -61,3 +61,6 @@ A Game inspired by the "Ratatouille" Cartoon.
  
 <b>Jan 24</b>
 - Polished Gameplay collision and Highscore System
+
+<b>Jan 26</b>
+- added Background Game Music
