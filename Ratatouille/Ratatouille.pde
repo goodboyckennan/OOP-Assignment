@@ -15,6 +15,7 @@ char name[];
 String highScore = ""; 
 Minim minim = new Minim(this);
 AudioPlayer foodHit;
+AudioPlayer bgm;
 
 Score tagScore;
 Score survivalScore;
@@ -38,7 +39,7 @@ void setup(){
   currentLetter = 0;
   survivalScore = new Score(350,150);
   
-  
+  bgm = minim.loadFile("bgm.mp3");
   foodHit = minim.loadFile("move.wav");
   timer = new Timer(width/2,35,millis());
 }
@@ -65,9 +66,14 @@ void draw(){
 //gameplay
 void playTagGame(){
   floor.display();
-  
+  //backround music
+  if(!bgm.isPlaying()){
+     bgm.play();
+     bgm.rewind();
+  }
+    
   //change to 3min when done testing
-  if(timer.second < 20){
+  if(timer.minute < 3){
     //display food
     spawnFood();
     for(int i = 0; i < objects.size(); i++){
@@ -108,6 +114,7 @@ void resetStats(){
     Player p = players.get(i);
     p.pos.x =  (i + 1) * gap;
     p.pos.y = 300;
+    p.theta = 0;
     p.points = 0;   
   }
   timer.minute = 0;
