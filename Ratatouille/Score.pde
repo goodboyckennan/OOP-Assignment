@@ -31,7 +31,7 @@ class Score{
          fill(205,127,50);
        }
       text((i+1) +"  "+name[i],x,y+(i*25));
-      text(score[i],x+150,y+(i*25));
+      text(score[i],x+140,y+(i*25));
     }
   }
   
