@@ -66,14 +66,15 @@ void draw(){
 //gameplay
 void playTagGame(){
   floor.display();
-  //backround music
-  if(!bgm.isPlaying()){
-     bgm.play();
-     bgm.rewind();
-  }
-    
+  
   //change to 3min when done testing
   if(timer.minute < 3){
+    //backround music
+    if(!bgm.isPlaying()){
+      bgm.rewind(); 
+      bgm.play();  
+    }
+    
     //display food
     spawnFood();
     for(int i = 0; i < objects.size(); i++){
@@ -103,6 +104,7 @@ void playTagGame(){
     ui.stats();
   }else{
     menu.gameResult();
+    bgm.pause();
   }
 }
 
@@ -126,6 +128,7 @@ void resetStats(){
 
 //high score page
 void highScore(){
+   //load file
    tagScore.line = loadStrings("tag.csv");
    survivalScore.line = loadStrings("survival.csv");
   
@@ -155,6 +158,7 @@ void highScore(){
   }  
 }
 
+//food spawn alg
 void spawnFood(){
    if(timer.second % 5 == 0){
      if(frameCount % 60 == 0){  

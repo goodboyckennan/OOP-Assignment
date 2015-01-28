@@ -18,6 +18,9 @@ class Score{
     noFill();
     rect(x-30,y-20,250,270);
     
+    /*
+      1st place gets gold,2nd silver, rest bronze
+    */
      textAlign(LEFT,TOP);
      for(int i = 0; i < 10; i++){
        if(i == 0){

@@ -51,19 +51,19 @@ class Menu{
   
     //player 1 controls
     text("Player 1:",200,260);
-    text("Up - " + "'"+players.get(0).up+"'",200,280);
-    text("Down - " + "'"+players.get(0).down+"'",200,300);
-    text("Left - " + "'"+players.get(0).left+"'",200,320);
-    text("Right - " + "'"+players.get(0).right+"'",200,340);
-    text("Eat Food - " + "'"+players.get(0).button1+"'",200,360);
+    text("Up",200,280);
+    text("Down",200,300);
+    text("Left",200,320);
+    text("Right",200,340);
+    text("Eat Food - 'Button 1'",200,360);
          
     //player 2 controls
     text("Player 2:",400,260);
-    text("Up - " + "'"+players.get(1).up+"'",400,280);
-    text("Down - " + "'"+players.get(1).down+"'",400,300);
-    text("Left - " + "'"+players.get(1).left+"'",400,320);
-    text("Right - " + "'"+players.get(1).right+"'",400,340);
-    text("Eat Food - " + "'"+players.get(1).button1+"'",400,360);
+    text("Up",400,280);
+    text("Down",400,300);
+    text("Left",400,320);
+    text("Right",400,340);
+    text("Eat Food - 'Button 1'",400,360);
   
     fill(255);
     textSize(20);
