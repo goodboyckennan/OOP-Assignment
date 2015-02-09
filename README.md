@@ -5,8 +5,7 @@ Video Doc Link: https://www.youtube.com/channel/UCWapv40JFKfXufE6D8cu-VA/videos
 A Game inspired by the "Ratatouille" Cartoon.
 
 <b>Goal:</b> 
-- You control the rat, find the food without getting hit for as long as you can
-- Avoid Spatula or else you lose 1 life
+- Eat as much food! Player who eats the most food within the time limit wins!
 
 <b>Dec 26</b>
 - Procedurally drawn Rat(Player), Spatula,
