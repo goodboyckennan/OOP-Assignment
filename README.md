@@ -7,6 +7,13 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Goal:</b> 
 - Eat as much food! Player who eats the most food within the time limit wins!
 
+<b>Images:</b>
+
+![Menu](http://i1202.photobucket.com/albums/bb368/k_seno/r_zps41d2e6e5.jpg)
+![Highscore](http://i1202.photobucket.com/albums/bb368/k_seno/r2_zpsd431617d.jpg)
+![Gameplay](http://i1202.photobucket.com/albums/bb368/k_seno/3_zps1dbf112e.jpg)
+
+
 <b>Dec 26</b>
 - Procedurally drawn Rat(Player), Spatula,
 
@@ -64,10 +71,4 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Jan 26</b>
 - added Background Game Music
  
-<b>Images:</b>
-
-![Menu](http://i1202.photobucket.com/albums/bb368/k_seno/r_zps41d2e6e5.jpg)
-![Highscore](http://i1202.photobucket.com/albums/bb368/k_seno/r2_zpsd431617d.jpg)
-![Gameplay](http://i1202.photobucket.com/albums/bb368/k_seno/3_zps1dbf112e.jpg)
-
 
