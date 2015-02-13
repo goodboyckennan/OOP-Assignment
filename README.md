@@ -64,7 +64,7 @@ A Game inspired by the "Ratatouille" Cartoon.
 <b>Jan 26</b>
 - added Background Game Music
  
-Images:
+<b>Images:</b>
 
 ![Menu](http://i1202.photobucket.com/albums/bb368/k_seno/r_zps41d2e6e5.jpg)
 ![Highscore](http://i1202.photobucket.com/albums/bb368/k_seno/r2_zpsd431617d.jpg)
