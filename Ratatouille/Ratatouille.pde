@@ -67,8 +67,8 @@ void draw(){
 void playTagGame(){
   floor.display();
   
-  //change to 3min when done testing
-  if(timer.minute < 3){
+  //change to 2min when done testing
+  if(timer.minute < 2){
     //backround music
     if(!bgm.isPlaying()){
       bgm.rewind(); 
