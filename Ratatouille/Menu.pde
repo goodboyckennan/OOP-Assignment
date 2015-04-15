@@ -47,7 +47,7 @@ class Menu{
     textSize(16);
     textAlign(CENTER);
     fill(0);
-    text("Goal: Eat as much food within 3 minutes!",width/2,220);
+    text("Goal: Eat as much food within 2 minutes!",width/2,220);
   
     //player 1 controls
     text("Player 1:",200,260);

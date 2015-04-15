@@ -1,3 +1,9 @@
+/*
+  Controls: 
+      Player 1: WASD and E to eat food
+      Player 2: IJKL and P to eat food 
+*/
+
 import ddf.minim.*;
 
 ArrayList<Player> players = new ArrayList<Player>();
