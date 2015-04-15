@@ -22,6 +22,7 @@ String highScore = "";
 Minim minim = new Minim(this);
 AudioPlayer foodHit;
 AudioPlayer bgm;
+AudioPlayer menuMusic;
 
 Score tagScore;
 Score survivalScore;
@@ -47,6 +48,7 @@ void setup(){
   
   bgm = minim.loadFile("bgm.mp3");
   foodHit = minim.loadFile("move.wav");
+  menuMusic = minim.loadFile("main_menu_music.mp3");
   timer = new Timer(width/2,35,millis());
 }
 
@@ -55,7 +57,11 @@ void draw(){
   
   switch(gameState){
     case 0:
-      menu.gameMenu();      
+      menu.gameMenu();
+      if(!menuMusic.isPlaying()){
+        menuMusic.rewind(); 
+        menuMusic.play();  
+      }        
       break;
     case 1:
       menu.tutorial();
@@ -78,7 +84,8 @@ void playTagGame(){
     //backround music
     if(!bgm.isPlaying()){
       bgm.rewind(); 
-      bgm.play();  
+      bgm.play(); 
+      menuMusic.pause(); 
     }
     
     //display food
