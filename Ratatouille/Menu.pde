@@ -51,19 +51,19 @@ class Menu{
   
     //player 1 controls
     text("Player 1:",200,260);
-    text("Up",200,280);
-    text("Down",200,300);
-    text("Left",200,320);
-    text("Right",200,340);
-    text("Eat Food - 'Button 1'",200,360);
+    text("Up - W",200,280);
+    text("Down - S",200,300);
+    text("Left - A",200,320);
+    text("Right - D",200,340);
+    text("Eat Food - 'E'",200,360);
          
     //player 2 controls
     text("Player 2:",400,260);
-    text("Up",400,280);
-    text("Down",400,300);
-    text("Left",400,320);
-    text("Right",400,340);
-    text("Eat Food - 'Button 1'",400,360);
+    text("Up - I",400,280);
+    text("Down - K",400,300);
+    text("Left - J",400,320);
+    text("Right - L",400,340);
+    text("Eat Food - 'P'",400,360);
   
     fill(255);
     textSize(20);
